@@ -1,0 +1,25 @@
+ubicoins	float
+vox	float
+ubits	int
+vbits	int
+ubi	float
+vbi	float
+xbi	float
+uid	int
+nick	text
+active	bit
+type	text
+v2u	bit
+name	text
+groups	set(int)
+members	set(int)
+cc	text
+region	text
+place	text
+offers	set(text)
+wants	set(text)
+URL	url
+start date	date
+end date	date
+referees	set(int)
+pgp public key	text
