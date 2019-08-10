@@ -62,6 +62,10 @@ new Vue({
 				var f_type = meta[f_name];
 				var f_value = this.form1.record[f_name] || null;
 
+				if (f_type === 'bit') {
+					f_value = f_value === '1';
+				}
+
 				st.push({
 					name: f_name,
 					type: f_type,

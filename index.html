@@ -40,7 +40,7 @@
                     <input type="date" v-model="field.value" :placeholder="field.name" v-if="['date'].indexOf(field.type)!==-1">
                     <input type="number" v-model="field.value" :placeholder="field.name" v-if="['int','float'].indexOf(field.type)!==-1">
                     <textarea  v-model="field.value" cols="30" rows="10" v-if="['text'].indexOf(field.type)!==-1"></textarea>
-                    <input type="checkbox" v-model="field.value" v-if="['bit'].indexOf(field.type)!==-1">
+                    <input type="checkbox" v-model="field.value" value="1" v-if="['bit'].indexOf(field.type)!==-1">
 
                 </div>
             </div>
