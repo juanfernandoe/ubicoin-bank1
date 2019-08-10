@@ -6,18 +6,18 @@ ubi	float
 vbi	float
 xbi	float
 uid	int
-nick	text
+nick	string
 active	bit
-type	text
+type	string
 v2u	bit
-name	text
+name	string
 groups	set(int)
 members	set(int)
-cc	text
-region	text
-place	text
-offers	set(text)
-wants	set(text)
+cc	string
+region	string
+place	string
+offers	set(string)
+wants	set(string)
 URL	url
 start date	date
 end date	date
