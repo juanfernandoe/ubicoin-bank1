@@ -69,7 +69,8 @@ new Vue({
 				st.push({
 					name: f_name,
 					type: f_type,
-					value: f_value
+					value: f_value,
+					readonly: true
 				});
 			}
 
