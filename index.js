@@ -34,12 +34,12 @@ new Vue({
 
 		fetch: function () {
 
-			var url = 'https://ubi.aiki.info/1/a';
+			var url = 'https://ubi.aiki.info/1/p';
 			axios.get(url)
 				.then((res) => {
 					var [record, fields] = parse_rec(res.data);
 					this.form1.fields = fields;
-					this.form1.record = record;
+					this.form1.record = record[0];
 
 					this.$forceUpdate();
 
@@ -60,13 +60,17 @@ new Vue({
 			for (var i = 0; i < fields.length; i++) {
 				var f_name = fields[i];
 				var f_type = meta[f_name];
-			
+				var f_value = this.form1.record[f_name] || null;
+
 				st.push({
 					name: f_name,
-					type: f_type
+					type: f_type,
+					value: f_value
 				});
 			}
-			return st;
+
+			this.form1.st = st;
+			return this.form1.st;
 		}
 
 	}

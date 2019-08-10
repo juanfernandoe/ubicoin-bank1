@@ -34,10 +34,10 @@
             <div class="grid-x" style="max-width: 600px;">
 
                 <div class="cell small-12" v-for="field in formStructure()">
-                    <label>{{field.name}}</label>
-                    <input type="text" :placeholder="field.name" v-if="['string'].indexOf(field.type)!==-1">
-                    <input type="number" :placeholder="field.name" v-if="['int','float'].indexOf(field.type)!==-1">
-                    <textarea cols="30" rows="10" v-if="['text'].indexOf(field.type)!==-1"></textarea>
+                    <label>{{field.name}} ( {{field.type}} ) </label>
+                    <input type="text" v-model="field.value" :placeholder="field.name" v-if="['string'].indexOf(field.type)!==-1">
+                    <input type="number" v-model="field.value" :placeholder="field.name" v-if="['int','float'].indexOf(field.type)!==-1">
+                    <textarea  v-model="field.value" cols="30" rows="10" v-if="['text'].indexOf(field.type)!==-1"></textarea>
 
                 </div>
             </div>
