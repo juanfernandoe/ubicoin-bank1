@@ -15,8 +15,6 @@ new Vue({
 	},
 
 	mounted: function () {
-		console.log("hello mounted");
-
 		axios.get('https://ubi.aiki.info/app/meta')
 			.then((res) => {
 				this.form1.meta = parse_rec(res.data)[0];
@@ -62,8 +60,12 @@ new Vue({
 				var f_type = meta[f_name];
 				var f_value = this.form1.record[f_name] || null;
 
+				// TODO move convert to loader?
 				if (f_type === 'bit') {
 					f_value = f_value === '1';
+				}
+				else if (f_type === 'num' || f_type === 'float') {
+					f_value = +f_value;
 				}
 
 				st.push({

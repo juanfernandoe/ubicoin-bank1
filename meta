@@ -22,5 +22,5 @@ URL	url
 start date	date
 end date	date
 referees	set(int)
-pgp public key	text
+pgp public key	code
 manifesto	text
