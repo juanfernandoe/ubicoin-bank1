@@ -15,8 +15,8 @@
 	<script src="ext/axios.js"></script>
 	<script src="use/templa2.js"></script>
 
-	<link rel="stylesheet" href="ext/foundation.min.css" />
-
+	<link rel="stylesheet" href="ext/foundation.css" />
+	<link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
@@ -33,19 +33,26 @@
 		<!-- {{this.form1.fields}} -->
 
 		<div class="grid-container">
-			<div class="grid-x" style="max-width: 600px;">
+			<div class="grid-x">
+				<template v-for="field in formStructure()">
 
-				<div class="cell small-12" v-for="field in formStructure()">
-					<label>{{field.name}}<!-- ( {{field.type}} ) --></label>
-					<input type="text" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['string','set(int)'].indexOf(field.type)!==-1">
-					<input type="url" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['url'].indexOf(field.type)!==-1">
-					<input type="date" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['date'].indexOf(field.type)!==-1">
-					<input type="number" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['int','float'].indexOf(field.type)!==-1">
-					<textarea v-model="field.value" :readonly="field.readonly" cols="30" rows="10" v-if="['text','set(string)'].indexOf(field.type)!==-1"></textarea>
-					<textarea v-model="field.value" style="font-size:small; font-family:monospace;" :readonly="field.readonly" cols="30" rows="10" v-if="['code'].indexOf(field.type)!==-1"></textarea>
-					<input type="checkbox" v-model="field.value" :readonly="field.readonly" value="1" v-if="['bit'].indexOf(field.type)!==-1">
+					<div class="cell small-4">
+						<label class="capitalize">{{field.name}}: ( {{field.type}} ) </label>
+					</div>
 
-				</div>
+					<div class="cell small-8" >
+						<input type="text" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['string','set(int)'].indexOf(field.type)!==-1">
+						<input type="url" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['url'].indexOf(field.type)!==-1">
+						<input type="date" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['date'].indexOf(field.type)!==-1">
+						<input type="number" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['int','float'].indexOf(field.type)!==-1">
+						<textarea v-model="field.value" :readonly="field.readonly" cols="30" rows="10" v-if="['text','set(string)'].indexOf(field.type)!==-1"></textarea>
+						<textarea v-model="field.value" style="font-size:small; font-family:monospace;" :readonly="field.readonly" cols="30" rows="10" v-if="['code'].indexOf(field.type)!==-1"></textarea>
+						<input type="checkbox" v-model="field.value" :readonly="field.readonly" value="1" v-if="['bit'].indexOf(field.type)!==-1">
+	
+					</div>
+	
+				</template>
+
 			</div>
 		</div>
 

@@ -1,0 +1,26 @@
+ubicoins	UBIcoin balance (1 per 100 ubits)
+vox	Vox balance (1 per 100 vbits)
+ubits	ubits balance
+vbits	Vox balance
+ubi	daily UBI (basic income)
+vbi	daily VBI (Vox income)
+xbi	daily XBI (extra basic income)
+uid	User ID
+nick	Nickname
+active	active
+type	account type
+v2u	v2u, may convert Vox to UBIcoin
+name	full name
+groups	group memberships
+members	members of this group
+cc	country code
+region	region code
+place	town / suburb / city
+offers	offers
+wants	wants and needs
+URL	url
+start date	date
+end date	date
+referees	set(int)
+pgp public key	code
+manifesto	text
