@@ -45,8 +45,8 @@
 						<input type="url" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['url'].indexOf(field.type)!==-1">
 						<input type="date" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['date'].indexOf(field.type)!==-1">
 						<input type="number" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['int','float'].indexOf(field.type)!==-1">
-						<textarea v-model="field.value" :readonly="field.readonly" cols="30" rows="10" v-if="['text','set(string)'].indexOf(field.type)!==-1"></textarea>
-						<textarea v-model="field.value" style="font-size:small; font-family:monospace;" :readonly="field.readonly" cols="30" rows="10" v-if="['code'].indexOf(field.type)!==-1"></textarea>
+						<textarea v-model="field.value" :readonly="field.readonly" rows="5" v-if="['text','set(string)'].indexOf(field.type)!==-1"></textarea>
+						<textarea v-model="field.value" style="font-size:small; font-family:monospace;" :readonly="field.readonly" rows="5" v-if="['code'].indexOf(field.type)!==-1"></textarea>
 						<input type="checkbox" v-model="field.value" :readonly="field.readonly" value="1" v-if="['bit'].indexOf(field.type)!==-1">
 	
 					</div>
