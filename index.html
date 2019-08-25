@@ -6,8 +6,7 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<title>Document</title>
-
+	<title>UBIcoin bank1 app</title>
 
 	<script src="ext/vue.js"></script>
 	<script src="ext/axios.js"></script>
@@ -20,35 +19,47 @@
 <body>
 
 	<div id="app">
-		<p>{{ message }}</p>
-
-		<input type="text" v-model="form1.name">
-		<button class="button" @click="hello()">hello</button>
-		<button class="button" @click="fetch()">fetch</button>
-
-		<hr />
-
-		<!-- {{this.form1.fields}} -->
-
 		<div class="grid-container">
 			<div class="grid-x grid-margin-x">
+				<div class="cell small-12 medium-12 large-12">
+					<h1>UBIcoin bank1 app</h1>
+					<p id="message">{{ message }}</p>
+					<button class="button" @click="fetch()">fetch</button>
+				</div>
+
 				<template v-for="field in formStructure()">
 
-					<div class="cell small-12 medium-2 large-1">
-<!--						<label class="capitalize">{{field.name}}: ( {{field.type}} ) </label> -->
-						<label class="capitalize">{{field.name}}:</label>
+					<div class="cell small-12 medium-12 large-12" v-if="field.newline"> </div>
+
+					<div class="cell small-12 medium-12 large-6" v-if="['text','code'].indexOf(field.type)!==-1">
+						<label class="capitalize" :for="field.name">{{field.name}}:
+							<textarea :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" v-if="['text'].indexOf(field.type)!==-1"></textarea>
+							<textarea :id="field.name" :name="field.name" v-model="field.value" class="code" :readonly="field.readonly" v-if="['code'].indexOf(field.type)!==-1"></textarea>
+						</label>
 					</div>
 
-					<div class="cell small-12 medium-4 large-3">
-						<input type="text" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['string','set(int)'].indexOf(field.type)!==-1">
-						<input type="url" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['url'].indexOf(field.type)!==-1">
-						<input type="date" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['date'].indexOf(field.type)!==-1">
-						<input type="number" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['int','float'].indexOf(field.type)!==-1">
-						<textarea v-model="field.value" :readonly="field.readonly" rows="5" v-if="['text','set(string)'].indexOf(field.type)!==-1"></textarea>
-						<textarea v-model="field.value" style="font-size:small; font-family:monospace;" :readonly="field.readonly" rows="5" v-if="['code'].indexOf(field.type)!==-1"></textarea>
-						<input type="checkbox" v-model="field.value" :readonly="field.readonly" value="1" v-if="['bit'].indexOf(field.type)!==-1 && !field.readonly">
-						<input type="checkbox" v-model="field.value" :readonly="field.readonly" onclick="return false;" value="1" v-if="['bit'].indexOf(field.type)!==-1 && field.readonly">
-	
+					<div class="cell small-3 medium-3 large-2" v-if="['bit','short'].indexOf(field.type)!==-1">
+						<label class="capitalize" :for="field.name">{{field.name}}:
+							<input type="checkbox" class="checkbox" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" value="1" v-if="['bit'].indexOf(field.type)!==-1 && !field.readonly">
+							<input type="checkbox" class="checkbox" style="display:block;" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" onclick="return false;" value="1" v-if="['bit'].indexOf(field.type)!==-1 && field.readonly">
+							<input type="text" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['short'].indexOf(field.type)!==-1">
+						</label>
+					</div>
+
+					<div class="cell small-6 medium-3 large-2" v-if="['date','int','float','set(int)','medium'].indexOf(field.type)!==-1">
+						<label class="capitalize" :for="field.name">{{field.name}}:
+							<input type="date" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['date'].indexOf(field.type)!==-1">
+							<input type="number" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['int','float'].indexOf(field.type)!==-1">
+							<input type="text" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['medium','set(int)'].indexOf(field.type)!==-1">
+						</label>
+					</div>
+
+					<div class="cell small-12 medium-6 large-4" v-if="['long','url'].indexOf(field.type)!==-1">
+						<label class="capitalize" :for="field.name">{{field.name}}:
+							<input type="text" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['long'].indexOf(field.type)!==-1">
+							<input type="url" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['url'].indexOf(field.type)!==-1">
+		
+						</label>
 					</div>
 	
 				</template>

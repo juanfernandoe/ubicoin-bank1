@@ -6,21 +6,23 @@ ubi	float
 vbi	float
 xbi	float
 uid	int
-nick	string
+nick	medium
 active	bit
-type	string
-v2u	bit
-name	string
+type	medium
+v2ubits	bit
+name	long
 groups	set(int)
 members	set(int)
-cc	string
-region	string
-place	string
-offers	set(string)
-wants	set(string)
+country	short
+region	short
+place	medium
+offers	text
+wants	text
 URL	url
 start date	date
 end date	date
 referees	set(int)
+references	set(int)
 public key	code
+introduction	text
 manifesto	text

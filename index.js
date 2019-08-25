@@ -3,8 +3,7 @@
 new Vue({
 	el: '#app',
 	data: {
-		message: 'Hello Vue.js!',
-		name: '',
+		message: '',
 
 		form1: {
 			meta: [],
@@ -14,51 +13,40 @@ new Vue({
 
 	},
 
-	mounted: function () {
-		axios.get('meta')
-			.then((res) => {
-				this.form1.meta = parse_rec(res.data)[0];
-				console.log(JSON.stringify(this.form1.meta));
-			})
-			.catch((ex) => {
-				console.error(ex);
-			});
+	mounted: async function () {
+		let res = await axios.get('meta');
+		this.form1.meta = parse_rec(res.data)[0];
+		console.log(JSON.stringify(this.form1.meta));
 	},
 
 	methods: {
-		hello: function () {
-			alert('hello ' + this.form1.name);
-		},
 
-		fetch: function () {
+		fetch: async function () {
 
-			var url = '/1/p';
-			axios.get(url)
-				.then((res) => {
-					var [record, fields] = parse_rec(res.data);
-					this.form1.fields = fields;
-					this.form1.record = record[0];
-
-					this.$forceUpdate();
-
-
-					console.log(fields, record);
-				})
-				.catch((ex) => {
-					console.error(ex);
-				});
+			let url = '/1/p';
+			let res = await axios.get(url);
+			let [record, fields] = parse_rec(res.data);
+			this.form1.fields = fields;
+			this.form1.record = record[0];
+//			this.$forceUpdate();   // is this needed?  seems to work without it
+			console.log(fields, record);
 		},
 
 		formStructure: function () {
 			let st = [];
 
-			var fields = this.form1.fields;
-			var meta = this.form1.meta[0];
+			let fields = this.form1.fields;
+			let meta = this.form1.meta[0];
+			let f_newline = false;
 
-			for (var i = 0; i < fields.length; i++) {
-				var f_name = fields[i];
-				var f_type = meta[f_name];
-				var f_value = this.form1.record[f_name] || null;
+			for (let i = 0; i < fields.length; i++) {
+				if (fields[i] === null) {
+					f_newline = true;
+					continue;
+				}
+				let f_name = fields[i];
+				let f_type = meta[f_name];
+				let f_value = this.form1.record[f_name] || null;
 
 				// TODO move convert to loader?
 				if (f_type === 'bit') {
@@ -72,8 +60,10 @@ new Vue({
 					name: f_name,
 					type: f_type,
 					value: f_value,
-					readonly: true
+					readonly: false,
+					newline: f_newline
 				});
+				f_newline = false;
 			}
 
 			this.form1.st = st;

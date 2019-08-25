@@ -1,4 +1,28 @@
-
 .capitalize {
-    text-transform: capitalize;
+	text-transform: capitalize;
+}
+
+.checkbox {
+	display: block;
+	transform:scale(2, 2);
+	margin: 1em;
+}
+
+textarea {
+	height: 180px;
+}
+
+textarea.code {
+	font-size: 1.85vw;
+	font-family: monospace;
+}
+@media print, screen and (min-width: 64em) {
+	textarea.code {
+		font-size: 0.95vw;
+	}
+}
+@media print, screen and (min-width: 1200px) {
+	textarea.code {
+		font-size: 11.4px;
+	}
 }

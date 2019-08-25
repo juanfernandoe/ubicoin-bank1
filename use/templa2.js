@@ -18,7 +18,12 @@ function parse_rec(data) {
 		var k, v;
 		records[i] = {};
 		for (var j=0; j<lines.length; ++j) {
-			var kv = lines[j].match(/^(.*?)\t(.*)$/);  // TODO check rx
+			var l = lines[j];
+			if (l[0] === '-') {
+				fields.push(null);
+				l = l.substring(1);
+			}
+			var kv = l.match(/^(.*?)\t(.*)$/);  // TODO check rx
 			if (kv[1]) {
 				k = kv[1], v = kv[2];
 				records[i][k] = v;
