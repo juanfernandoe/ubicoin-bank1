@@ -15,7 +15,7 @@ new Vue({
 	},
 
 	mounted: function () {
-		axios.get('https://ubi.aiki.info/app/meta')
+		axios.get('meta')
 			.then((res) => {
 				this.form1.meta = parse_rec(res.data)[0];
 				console.log(JSON.stringify(this.form1.meta));
@@ -32,7 +32,7 @@ new Vue({
 
 		fetch: function () {
 
-			var url = 'https://ubi.aiki.info/1/p';
+			var url = '/1/p';
 			axios.get(url)
 				.then((res) => {
 					var [record, fields] = parse_rec(res.data);
