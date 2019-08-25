@@ -5,12 +5,12 @@ vbits	int
 ubi	float
 vbi	float
 xbi	float
-uid	int
-nick	medium
+uid	short
+nick	short
 active	bit
 type	medium
 v2ubits	bit
-name	long
+name	medium
 groups	set(int)
 members	set(int)
 country	short

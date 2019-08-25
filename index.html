@@ -38,7 +38,7 @@
 						</label>
 					</div>
 
-					<div class="cell small-3 medium-3 large-2" v-if="['bit','short'].indexOf(field.type)!==-1">
+					<div class="cell small-3 medium-2 large-2" v-if="['bit','short'].indexOf(field.type)!==-1">
 						<label class="capitalize" :for="field.name">{{field.name}}:
 							<input type="checkbox" class="checkbox" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" value="1" v-if="['bit'].indexOf(field.type)!==-1 && !field.readonly">
 							<input type="checkbox" class="checkbox" style="display:block;" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" onclick="return false;" value="1" v-if="['bit'].indexOf(field.type)!==-1 && field.readonly">
@@ -46,7 +46,7 @@
 						</label>
 					</div>
 
-					<div class="cell small-6 medium-3 large-2" v-if="['date','int','float','set(int)','medium'].indexOf(field.type)!==-1">
+					<div class="cell small-6 medium-4 large-3" v-if="['date','int','float','set(int)','medium'].indexOf(field.type)!==-1">
 						<label class="capitalize" :for="field.name">{{field.name}}:
 							<input type="date" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['date'].indexOf(field.type)!==-1">
 							<input type="number" :id="field.name" :name="field.name" v-model="field.value" :readonly="field.readonly" :placeholder="field.name" v-if="['int','float'].indexOf(field.type)!==-1">
